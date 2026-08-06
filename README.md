@@ -132,6 +132,8 @@ backend/
 │   └── service.py             # Crawl orchestration
 ├── checks/
 │   ├── base.py                # Abstract check base class
+│   ├── fix_snippets.py        # Copy-pasteable fix snippets (site-specific)
+│   ├── answer_block.py        # Answer-Block Detectability (new)
 │   ├── robots_txt.py          # robots.txt check
 │   ├── llms_txt.py            # llms.txt check
 │   ├── sitemap.py             # sitemap.xml check
@@ -174,7 +176,7 @@ frontend/
 |-----------|--------|
 | URL crawling | **Real** — async httpx, respects robots.txt |
 | HTML parsing | **Real** — BeautifulSoup4 extracts text, headings, metadata, JSON-LD |
-| 12 GEO checks | **Real** — deterministic rules, no guessing |
+| 13 GEO checks | **Real** — deterministic rules, no guessing |
 | Scoring engine | **Real** — fixed weights per SCORING_ENGINE.md |
 | LLM explanations | **Templates** — falls back to pre-written explanations when no OpenAI API key is set |
 | Report generation | **Real** — JSON + HTML + React UI |
@@ -240,20 +242,24 @@ The assignment says *"go deep, not wide"* and *"defend every check in the README
 
 ## Run on 3 Real Websites
 
-### 1. stripe.com — Score: 43/100
-- ✅ Title tags present
+### 1. stripe.com — Score: 50/100
+- ✅ Title tags present on all pages
+- ✅ FAQ schema found (FAQ content present)
+- ✅ Article schema on blog pages
 - ❌ No Organization schema
 - ❌ No llms.txt
 - ❌ No sitemap.xml
 
-### 2. docs.github.com — Score: 33/100
+### 2. docs.github.com — Score: 41/100
 - ✅ Good heading structure
-- ✅ Article pages detected
+- ✅ FAQ schema partially detected
 - ❌ No Organization schema
-- ❌ Missing FAQ schema on FAQ content
+- ❌ Missing FAQPage schema on FAQ content
+- ❌ No llms.txt
+- ❌ No sitemap.xml
 
-### 3. notion.so — Score: 32/100
-- ✅ Content quality OK
+### 3. notion.so — Score: 37/100
+- ✅ Content quality reasonable
 - ❌ No Organization schema
 - ❌ No FAQ schema despite FAQ content
 - ❌ No llms.txt
@@ -290,7 +296,7 @@ When a site shows strong content quality signals (good headings, fresh content, 
 
 ## Decisions & Tradeoffs
 
-- **12 checks, not 30** — The docs suggested 25-35 checks, but I focused on the 12 highest-signal checks that are deterministic and measurable. Better to nail 12 than half-ship 30.
+- **13 checks, not 30** — The docs suggested 25-35 checks, but I focused on the 13 highest-signal checks that are deterministic and measurable. Better to nail 13 than half-ship 30.
 - **Templates over LLM** — Without a valid API key, the tool still works with pre-written explanations. LLM is additive, not required.
 - **Single-page crawl by default** — Crawl depth is configurable (default 2), but most SMBs have <20 pages worth auditing.
 - **No auth, no database** — Per the brief. Stateless, single-shot audit.
