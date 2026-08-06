@@ -10,7 +10,7 @@ from typing import Optional
 from .crawler.fetcher import fetch_llms_txt, fetch_robots_txt, fetch_sitemap, parse_sitemaps_from_robots
 from .crawler.service import crawl
 from .checks import ALL_CHECKS
-from .models import AuditRequest, CrawlResult
+from .models import AuditRequest, AuxData, CrawlResult
 from .report.generator import generate_report
 from .scoring.engine import compute_scores, compute_overall
 
@@ -58,14 +58,17 @@ async def run_audit(request: AuditRequest) -> dict:
         logger.warning("Failed to fetch aux files: %s", e)
         llms, sitemap = None, None
 
-    # Attach to pages
-    for page in crawl_result.pages:
-        page._robots_content = robots if isinstance(robots, str) else None
-        page._llms_content = llms if isinstance(llms, str) else None
-        page._sitemap_content = sitemap if isinstance(sitemap, str) else None
+    # Build typed aux data and attach to checks (instead of dynamic page attrs)
+    aux = AuxData(
+        robots_content=robots if isinstance(robots, str) else None,
+        llms_content=llms if isinstance(llms, str) else None,
+        sitemap_content=sitemap if isinstance(sitemap, str) else None,
+    )
 
-    # 4. Run all checks
+    # 4. Run all checks — aux is set on each check instance, not mutated on Page
     logger.info("Running %d checks on %d pages", len(ALL_CHECKS), len(crawl_result.pages))
+    for check in ALL_CHECKS:
+        check.aux = aux
     check_results = await asyncio.gather(*[asyncio.to_thread(check.run, crawl_result.pages) for check in ALL_CHECKS])
 
     # 5. Generate report

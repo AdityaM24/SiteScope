@@ -25,7 +25,8 @@ class LLMsTxtCheck(CheckBase):
             return self._build_result(False, 0, [], "No pages to check.")
 
         domain = pages[0].domain
-        llms_content = getattr(pages[0], "_llms_content", None)
+        aux = getattr(self, "aux", None)
+        llms_content = aux.llms_content if aux else None
 
         if llms_content is None:
             homepage = f"https://{domain}"

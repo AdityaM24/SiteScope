@@ -33,7 +33,8 @@ class RobotsTxtCheck(CheckBase):
 
         domain = pages[0].domain
         # We need the raw robots.txt content — fetched separately in the audit pipeline
-        robots_content = getattr(pages[0], "_robots_content", None)
+        robots_content = getattr(self, "aux", None)
+        robots_content = robots_content.robots_content if robots_content else None
 
         if robots_content is None:
             # robots.txt not available — default allow, but score 0 (missing file)

@@ -25,7 +25,8 @@ class SitemapCheck(CheckBase):
             return self._build_result(False, 0, [], "No pages to check.")
 
         domain = pages[0].domain
-        sitemap_content = getattr(pages[0], "_sitemap_content", None)
+        aux = getattr(self, "aux", None)
+        sitemap_content = aux.sitemap_content if aux else None
 
         if sitemap_content is None:
             homepage = f"https://{domain}"

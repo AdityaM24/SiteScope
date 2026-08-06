@@ -41,6 +41,17 @@ class CheckCategory(str, Enum):
 
 
 # ---------------------------------------------------------------------------
+# Auxiliary data passed to checks (robots.txt, llms.txt, sitemap.xml)
+# ---------------------------------------------------------------------------
+
+class AuxData(BaseModel):
+    """Extra crawl results attached to checks at runtime (not per-page data)."""
+    robots_content: Optional[str] = None
+    llms_content: Optional[str] = None
+    sitemap_content: Optional[str] = None
+
+
+# ---------------------------------------------------------------------------
 # Crawler / Extractor models
 # ---------------------------------------------------------------------------
 
