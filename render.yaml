@@ -1,21 +1,17 @@
 # Render Blueprint — one-click deploy of the GEO Auditor
+# Uses the Dockerfile (multi-stage: Node builds frontend, Python runs backend).
 # Create a free Web Service from this file: New → Blueprint → select this repo.
 services:
   - type: web
     name: geo-auditor
-    runtime: python
+    runtime: docker
     plan: free
     healthCheckPath: /health
-    buildCommand: |
-      pip install -r backend/requirements.txt &&
-      cd frontend && npm install && npm run build
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: ./Dockerfile
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.12.3
       - key: GEO_LLM_PROVIDER
         value: groq
-      - key: GROQ_API_KEY
-        sync: false   # set this in the Render dashboard after deploy
       - key: GROQ_LLM_MODEL
         value: llama-3.3-70b-versatile
+      - key: GROQ_API_KEY
+        sync: false   # set this in the Render dashboard after deploy
