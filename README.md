@@ -9,7 +9,7 @@ A tool that audits websites for AI search visibility. Enter a URL → get a scor
 pip install -r backend/requirements.txt
 
 # 2. Start the backend
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+python -m uvicorn backend.main:app
 
 # 3. In another terminal — install & start frontend
 cd frontend
@@ -36,7 +36,7 @@ Swagger docs: http://localhost:8000/docs
 When you enter a website URL, the GEO Auditor:
 
 1. **Crawls** the homepage + key pages (up to 20 pages, depth 2)
-2. **Checks** 12 GEO signals across 5 categories
+2. **Checks** 13 GEO signals across 5 categories
 3. **Scores** the site 0–100 with a transparent breakdown
 4. **Reports** specific issues with evidence and copy-pasteable fixes
 
@@ -230,7 +230,7 @@ The assignment says *"go deep, not wide"* and *"defend every check in the README
 |-----------|--------|
 | URL crawling | **Real** — async httpx, respects robots.txt, discovers sitemaps via robots.txt directives |
 | HTML parsing | **Real** — BeautifulSoup4 extracts text, headings, metadata, JSON-LD |
-| 12 GEO checks | **Real** — deterministic rules, no guessing. Each produces evidence + a copy-pasteable fix snippet. |
+| 13 GEO checks | **Real** — deterministic rules, no guessing. Each produces evidence + a copy-pasteable fix snippet. |
 | Scoring engine | **Real** — fixed weights per SCORING_ENGINE.md, fully transparent breakdown |
 | LLM explanations | **Real** (when key is set) — Groq llama-3.3-70b generates business-friendly per-issue explanations. Falls back to templates when no key. |
 | Copy-pasteable fixes | **Real** — Organization, FAQ, Article, Breadcrumb, NAP, robots.txt, llms.txt, sitemap snippets filled with detected site data |
