@@ -3,7 +3,10 @@ import ScoreCard from './components/ScoreCard'
 import CategoryGrid from './components/CategoryGrid'
 import IssueList from './components/IssueList'
 
-const API_BASE = '/api/v1'
+// Default to relative path (works when backend serves the frontend, e.g. on Render).
+// For a split deploy (frontend on Vercel, backend elsewhere), set VITE_API_URL to the backend origin,
+// e.g. VITE_API_URL=https://geo-auditor.onrender.com/api/v1
+const API_BASE = import.meta.env.VITE_API_URL || '/api/v1'
 
 export default function App() {
   const [url, setUrl] = useState('')

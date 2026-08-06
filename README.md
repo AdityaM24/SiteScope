@@ -42,7 +42,7 @@ When you enter a website URL, the GEO Auditor:
 
 ---
 
-## The 12 Checks (by category)
+## The 13 Checks (by category)
 
 ### Content Quality (25 pts)
 | Check | What it checks | Why it matters |
@@ -117,14 +117,13 @@ Composite score derived from FAQ + Article schema, meta description, and title p
 
 ```
 backend/
-├── main.py                    # FastAPI app entry point
+├── main.py                    # FastAPI app entry point (API + serves built frontend)
 ├── config.py                  # Environment config
 ├── models.py                  # Pydantic models (contracts)
 ├── audit_pipeline.py          # Orchestrates full audit
 ├── routers/
 │   ├── health.py              # GET /health
-│   ├── audit.py               # POST /api/v1/audit
-│   └── frontend.py            # Serve frontend
+│   └── audit.py               # POST /api/v1/audit
 ├── crawler/
 │   ├── url_utils.py           # URL validation
 │   ├── fetcher.py             # Async HTTP fetcher
@@ -170,21 +169,6 @@ frontend/
 
 ---
 
-## What's Real vs Mocked
-
-| Component | Status |
-|-----------|--------|
-| URL crawling | **Real** — async httpx, respects robots.txt |
-| HTML parsing | **Real** — BeautifulSoup4 extracts text, headings, metadata, JSON-LD |
-| 13 GEO checks | **Real** — deterministic rules, no guessing |
-| Scoring engine | **Real** — fixed weights per SCORING_ENGINE.md |
-| LLM explanations | **Templates** — falls back to pre-written explanations when no OpenAI API key is set |
-| Report generation | **Real** — JSON + HTML + React UI |
-
-To enable LLM explanations, set `OPENAI_API_KEY` in your environment.
-
----
-
 ## Why Each Check Is Here (and Why Others Were Cut)
 
 The assignment says *"go deep, not wide"* and *"defend every check in the README."* Here's my reasoning.
@@ -223,6 +207,47 @@ The assignment says *"go deep, not wide"* and *"defend every check in the README
 | **Accessibility (a11y)** | Critical for users, not related to AI citation readiness. Different discipline entirely. | Wrong problem |
 | **Mobile responsiveness** | Out of scope per the assignment ("not graded"). AI crawlers don't render mobile views. | Explicitly excluded |
 | **JavaScript rendering** | We only parse static HTML. SPAs (React/Next.js) may need JS to render content, but that's a complex crawl problem out of MVP scope. | Technically hard; out of MVP |
+
+---
+
+## Deployment
+
+The audit crawls up to 20 pages and can take 30–60 s, so the backend needs a host that
+allows long-running requests (Vercel's free serverless tier caps at 10 s and will time out).
+
+### Option A — One service: Render (recommended, free)
+
+Runs the FastAPI backend **and** serves the built frontend from one free web service.
+
+1. Push this repo to GitHub.
+2. Go to [render.com](https://render.com) → **New → Blueprint** → pick the repo.
+3. Render reads `render.yaml` automatically and deploys.
+4. Set `GROQ_API_KEY` in the Render dashboard → Environment (optional, enables LLM explanations).
+5. Open the deployed URL — the React UI is served at `/`.
+
+### Option B — Split: Vercel frontend + Render backend
+
+Frontend on Vercel (free, fast), backend on Render (handles the long audit).
+
+**Backend:**
+1. Deploy the repo to Render as a **Web Service** (free) with:
+   - Build command: `scripts/build.sh`
+   - Start command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+
+**Frontend:**
+1. Deploy to Vercel — it reads `vercel.json` (builds `frontend/`, SPA rewrite).
+2. Set the env var on Vercel → Environment:
+   ```
+   VITE_API_URL=https://<your-backend>.onrender.com/api/v1
+   ```
+3. Redeploy so Vite bakes the URL into the bundle.
+
+### Local run
+```bash
+pip install -r backend/requirements.txt
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000   # backend + serves frontend if built
+```
+To build the frontend for local production-style serving: `cd frontend && npm run build`.
 
 ---
 
