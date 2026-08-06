@@ -28,7 +28,20 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: url.trim() }),
       })
-      const data = await res.json()
+
+      const contentType = res.headers.get('content-type') || ''
+      let data
+
+      if (contentType.includes('application/json')) {
+        data = await res.json()
+      } else {
+        // Render free tier cold-start returns empty body — show a clear message
+        throw new Error(
+          contentType.includes('text/html')
+            ? 'Service is waking up from sleep — please wait ~50 s and try again.'
+            : `Unexpected response (HTTP ${res.status}). The service may be waking from sleep.`
+        )
+      }
 
       if (!res.ok || !data.success) {
         throw new Error(data.detail || data.message || 'Audit failed')
