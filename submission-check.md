@@ -148,16 +148,24 @@ The "hired on the spot" moment is happening — the answer-block check catches s
 
 ---
 
+## Live Deployment
+
+**https://geo-auditor-szbe.onrender.com** — deployed on Render free tier (single Docker image).
+- `/health` → `{"status":"healthy"}`
+- `/docs` → Swagger API docs
+- Free tier sleeps after ~15 min idle (first load ~50 s).
+
 ## Checklist before submission
 
 - [x] Code runs locally
 - [x] README covers: how to run, what built/cut, real vs mocked, what next
 - [x] 3 real audit reports generated (samples/)
-- [x] No auth, no database, no deployment
-- [x] Git initialized with 6 clean commits
+- [x] No auth, no database
+- [x] Git initialized with 9 clean commits, pushed to GitHub
+- [x] **Live deployment** on Render (https://geo-auditor-szbe.onrender.com)
 - [x] 13 checks with per-check defense in README
 - [x] Copy-pasteable fixes with site-specific data
 - [x] LLM explanations (Groq) with template fallback
-- [ ] GitHub repo pushed (you must do this)
+- [x] Deployment configs: Dockerfile, render.yaml, vercel.json, scripts/build.sh
 - [ ] Loom video recorded (you must do this)
 - [ ] Subject line: `GEO Auditor — [Your Name]`

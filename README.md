@@ -2,6 +2,18 @@
 
 A tool that audits websites for AI search visibility. Enter a URL → get a scored report showing what's broken and what to fix, with copy-pasteable recommendations.
 
+## 🚀 Live Demo
+
+**[https://geo-auditor-szbe.onrender.com](https://geo-auditor-szbe.onrender.com)**
+
+Deployed on Render (free tier). Enter a URL like `https://www.notion.so` and run an audit.
+Note: the free tier spins down after ~15 min idle, so the first load can take ~50 s.
+
+- **API docs (Swagger):** `https://geo-auditor-szbe.onrender.com/docs`
+- **Health check:** `https://geo-auditor-szbe.onrender.com/health`
+
+---
+
 ## Quick Start (< 5 minutes)
 
 ```bash
@@ -215,32 +227,33 @@ The assignment says *"go deep, not wide"* and *"defend every check in the README
 The audit crawls up to 20 pages and can take 30–60 s, so the backend needs a host that
 allows long-running requests (Vercel's free serverless tier caps at 10 s and will time out).
 
-### Option A — One service: Render (recommended, free)
+### Live deployment — Render (free)
 
-Runs the FastAPI backend **and** serves the built frontend from one free web service.
+**The app is live at [https://geo-auditor-szbe.onrender.com](https://geo-auditor-szbe.onrender.com).**
+
+Single Docker image (multi-stage: Node builds the React app, Python runs FastAPI and serves it).
+Deploy method:
 
 1. Push this repo to GitHub.
 2. Go to [render.com](https://render.com) → **New → Blueprint** → pick the repo.
-3. Render reads `render.yaml` automatically and deploys.
-4. Set `GROQ_API_KEY` in the Render dashboard → Environment (optional, enables LLM explanations).
+3. Render reads `render.yaml` (Docker runtime) and deploys — no other config needed.
+4. Optional: set `GROQ_API_KEY` in the Render dashboard → Environment to enable LLM explanations.
 5. Open the deployed URL — the React UI is served at `/`.
 
-### Option B — Split: Vercel frontend + Render backend
+Render free tier notes: the service sleeps after ~15 min of inactivity (first load ~50 s cold start),
+and you do **not** need the Postgres database Render may offer during Blueprint setup — skip it.
+
+### Alternative: split Vercel frontend + Render backend
 
 Frontend on Vercel (free, fast), backend on Render (handles the long audit).
 
-**Backend:**
-1. Deploy the repo to Render as a **Web Service** (free) with:
-   - Build command: `scripts/build.sh`
-   - Start command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+**Backend:** deploy the repo to Render as a **Web Service** (free) with:
+- Build command: `scripts/build.sh`
+- Start command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
 
-**Frontend:**
-1. Deploy to Vercel — it reads `vercel.json` (builds `frontend/`, SPA rewrite).
-2. Set the env var on Vercel → Environment:
-   ```
-   VITE_API_URL=https://<your-backend>.onrender.com/api/v1
-   ```
-3. Redeploy so Vite bakes the URL into the bundle.
+**Frontend:** deploy to Vercel — it reads `vercel.json` (builds `frontend/`, SPA rewrite).
+Set the env var on Vercel → Environment: `VITE_API_URL=https://<your-backend>.onrender.com/api/v1`,
+then redeploy so Vite bakes the URL into the bundle.
 
 ### Local run
 ```bash
@@ -309,20 +322,21 @@ When a site shows strong content quality signals (good headings, fresh content, 
 
 ## What I'd Build Next
 
-1. **LLM-powered recommendations** — Real OpenAI/Gemini explanations instead of templates
-2. **Multi-page analysis** — Score each page individually, find the weakest pages
-3. **Competitor comparison** — Compare your score against competitors
-4. **Historical tracking** — Store audit results, show improvement over time
-5. **Scheduled audits** — Cron-based re-auditing with email alerts
-6. **AI prompt simulation** — Actually ask ChatGPT/Perplexity about the business and check if it's cited
-7. **Richer entity checks** — Verify business info across Google Knowledge Graph, Wikipedia, social profiles
+1. **Multi-page analysis** — Score each page individually, find the weakest pages
+2. **Competitor comparison** — Compare your score against competitors
+3. **Historical tracking** — Store audit results, show improvement over time
+4. **Scheduled audits** — Cron-based re-auditing with email alerts
+5. **AI prompt simulation** — Actually ask ChatGPT/Perplexity about the business and check if it's cited
+6. **Richer entity checks** — Verify business info across Google Knowledge Graph, Wikipedia, social profiles
+7. **More answer-block depth** — Detect the *exact* passage AI would quote, and verify the first H2 is a natural-language question users actually ask
 
 ---
 
 ## Decisions & Tradeoffs
 
-- **13 checks, not 30** — The docs suggested 25-35 checks, but I focused on the 13 highest-signal checks that are deterministic and measurable. Better to nail 13 than half-ship 30.
-- **Templates over LLM** — Without a valid API key, the tool still works with pre-written explanations. LLM is additive, not required.
+- **13 checks, not 30** — The docs suggested 25-35 checks, but I focused on the 13 highest-signal checks that are deterministic and measurable. Better to nail 13 than half-ship 30. Every check is defended in the table above.
+- **LLM explanations via Groq, not OpenAI** — Groq's Llama 3.3 70B is free, fast, and OpenAI-compatible, so the same `AsyncOpenAI` client works for both. Falls back to templates if no key is set.
 - **Single-page crawl by default** — Crawl depth is configurable (default 2), but most SMBs have <20 pages worth auditing.
 - **No auth, no database** — Per the brief. Stateless, single-shot audit.
 - **Dark theme UI** — Feels modern, matches developer tools aesthetic.
+- **Content-strength dampening** — Established sites with strong content get reduced schema penalties, so a brand that's already visible to AI isn't penalized for lacking SEO markup. Scope note explains when this applies.
