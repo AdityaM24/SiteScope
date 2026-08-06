@@ -1,0 +1,3 @@
+"""
+Report generator module.
+"""

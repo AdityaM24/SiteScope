@@ -1,0 +1,181 @@
+{
+  "url": "https://docs.github.com",
+  "overallScore": 33,
+  "categoryScores": [
+    {
+      "category": "Content Quality",
+      "score": 15,
+      "max_score": 25,
+      "checks": [
+        "Title Tag",
+        "Meta Description",
+        "Heading Structure",
+        "Content Freshness"
+      ]
+    },
+    {
+      "category": "Structured Data",
+      "score": 5,
+      "max_score": 20,
+      "checks": [
+        "Organization Schema",
+        "FAQ Schema",
+        "Article Schema",
+        "Breadcrumb Schema"
+      ]
+    },
+    {
+      "category": "AI Accessibility",
+      "score": 0,
+      "max_score": 20,
+      "checks": [
+        "robots.txt",
+        "llms.txt",
+        "sitemap.xml"
+      ]
+    },
+    {
+      "category": "Entity Trust",
+      "score": 4,
+      "max_score": 20,
+      "checks": [
+        "Business Info Consistency"
+      ]
+    },
+    {
+      "category": "Citation Readiness",
+      "score": 9,
+      "max_score": 15,
+      "checks": [
+        "faq_schema",
+        "article_schema",
+        "meta_description",
+        "title"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Organization Schema",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No Organization schema found",
+      "recommendation": "Add Organization JSON-LD schema with name, logo, and contact info to help AI identify your business.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"GitHub Docs\",\n  \"url\": \"https://docs.github.com/\",\n  \"logo\": \"https://docs.github.com/favicon.ico\",\n  \"sameAs\": [\n    \"https://twitter.com/yourhandle\",\n    \"https://www.linkedin.com/company/yourcompany\"\n  ]\n}\n</script>",
+      "explanation": "The Organization Schema issue matters for AI visibility because it helps search engines and other artificial intelligence (AI) systems understand your business's identity and contact information. By adding an Organization JSON-LD schema, you're providing a standardized way for AI to read and understand your business's details, such as its name, logo, and contact info. This improves your business's online visibility and makes it easier for customers to find and interact with you, ultimately driving more traffic and sales to your website.",
+      "impact": 10,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 3.0
+    },
+    {
+      "id": 2,
+      "title": "FAQ Schema",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: FAQ content detected but no FAQPage schema. Questions: needed?, help?, needed?",
+      "recommendation": "FAQ content detected but no FAQPage JSON-LD schema. Add FAQPage schema for better AI visibility.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Did you find what you needed?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Paste the answer here.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Still need help?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Paste the answer here.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What are GitHub Codespaces?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Paste the answer here.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Ready to choose a plan?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Paste the answer here.\"\n      }\n    }\n  ]\n}\n</script>",
+      "explanation": "The FAQ schema issue matters for AI visibility because it helps search engines like Google understand the structure and content of your website's frequently asked questions (FAQ) section. By adding an FAQPage schema, you're providing a clear roadmap for artificial intelligence (AI) to identify and display your FAQ content in search results, making it more visible and accessible to users. This, in turn, can improve your website's search engine ranking and drive more traffic to your site.",
+      "impact": 8,
+      "confidence": 0.85,
+      "effort": "Low",
+      "estimatedScoreGain": 8,
+      "priority": 2.55
+    },
+    {
+      "id": 3,
+      "title": "llms.txt",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No /llms.txt file found",
+      "recommendation": "Add a /llms.txt file to guide AI crawlers. Include a site description and links to key pages.",
+      "fixCode": "# GitHub Docs\n\n> A short description of GitHub Docs and what the site offers.\n\n## Key Pages\n\n- [Home](https://docs.github.com/)\n- [About](https://docs.github.com/about)\n- [Contact](https://docs.github.com/contact)\n- [Products](https://docs.github.com/products)\n",
+      "explanation": "This issue matters for AI visibility because it affects how artificial intelligence (AI) systems, like search engines, understand and showcase your online presence. By adding a /llms.txt file, you're providing a roadmap for AI \"crawlers\" (think of them as digital librarians) to navigate and index your website, making it more discoverable. Essentially, this file helps AI systems like Google understand what your site is about and what content is important, which can improve your website's visibility in search results.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 4,
+      "title": "sitemap.xml",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No sitemap.xml found",
+      "recommendation": "Create a sitemap.xml to help AI crawlers discover your pages.",
+      "fixCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://docs.github.com/</loc>\n    <lastmod>2026-08-06</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n</urlset>\n",
+      "explanation": "The absence of a sitemap.xml file matters for AI visibility because it makes it harder for search engines and other AI-powered tools to find and understand the structure of your website. Think of a sitemap.xml like a map that helps these tools navigate and discover all the pages on your site, making it more likely that your content will show up in search results. By creating a sitemap.xml, you can improve your website's visibility and make it easier for AI crawlers to index your pages, which can drive more traffic to your site.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 5,
+      "title": "Content Freshness",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No dates found on 20 pages",
+      "recommendation": "Add 'last modified' dates to pages. AI assistants prefer fresh content.",
+      "fixCode": "<meta property=\"article:modified_time\" content=\"2026-08-06T10:00:00+00:00\" />\n<meta property=\"og:updated_time\" content=\"2026-08-06T10:00:00+00:00\" />",
+      "explanation": "The issue of content freshness matters for AI visibility because search engines and AI assistants, like virtual helpers, prioritize showing users the most up-to-date and relevant information. By not having 'last modified' dates on pages, it's difficult for these AI systems to determine how current the content is, which can negatively impact visibility and credibility. Adding these dates helps AI systems understand that the content is regularly updated, making it more likely to be displayed to users.",
+      "impact": 5,
+      "confidence": 0.9,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 1.8
+    },
+    {
+      "id": 6,
+      "title": "robots.txt",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No robots.txt found",
+      "recommendation": "Add a robots.txt file to guide AI and search crawlers.",
+      "fixCode": "# Allow AI crawlers (so your site can appear in ChatGPT, Perplexity, etc.)\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\n# General rules\nUser-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /login/\n",
+      "explanation": "The issue of missing robots.txt matters for AI visibility because it affects how search engines and artificial intelligence (AI) systems discover and understand your online content. Without a robots.txt file, AI and search crawlers may not be able to properly navigate and index your website, potentially limiting its visibility and reach. By adding a robots.txt file, you can provide guidance on what content to crawl and index, improving your website's discoverability and overall online presence.",
+      "impact": 10,
+      "confidence": 0.7,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 1.4
+    },
+    {
+      "id": 7,
+      "title": "Breadcrumb Schema",
+      "page": "docs.github.com",
+      "severity": "High",
+      "evidence": "docs.github.com: No BreadcrumbList schema found",
+      "recommendation": "Add BreadcrumbList JSON-LD to help AI understand site hierarchy.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://docs.github.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"Current Page\",\n      \"item\": \"https://docs.github.com/current-page\"\n    }\n  ]\n}\n</script>",
+      "explanation": "The Breadcrumb Schema issue matters for AI visibility because it helps search engines like Google understand the organization and structure of a website, making it easier for users to find what they're looking for. By adding BreadcrumbList JSON-LD (a type of code that provides additional context), a website can improve its visibility in search results and enhance the overall user experience. This is important because it can increase website traffic and ultimately drive more business.",
+      "impact": 3,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 3,
+      "priority": 1.0
+    },
+    {
+      "id": 8,
+      "title": "Business Info Consistency",
+      "page": "",
+      "severity": "Medium",
+      "evidence": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "recommendation": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"GitHub Docs\",\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"123 Main Street\",\n    \"addressLocality\": \"City\",\n    \"addressRegion\": \"State\",\n    \"postalCode\": \"12345\",\n    \"addressCountry\": \"US\"\n  },\n  \"telephone\": \"+1-555-123-4567\",\n  \"email\": \"hello@yourdomain.com\"\n}\n</script>",
+      "explanation": "This issue matters for AI visibility because inconsistent business information across your website and online presence can confuse search engines like Google, making it harder for them to understand and display your business accurately. Think of it like having multiple business cards with different names and addresses - it's hard for anyone to know which one is correct. By using consistent business information, such as your organization's name, address, and phone number, across all pages and online platforms, you can improve your online visibility and make it easier for customers to find you.",
+      "impact": 6,
+      "confidence": 0.8,
+      "effort": "Medium",
+      "estimatedScoreGain": 6,
+      "priority": 0.8
+    }
+  ],
+  "executiveSummary": "Our audit yielded a score of 33/100, indicating significant room for improvement. The top issues include missing \"Organization Schema\" and \"FAQ Schema\" (types of structured data that help search engines understand our content), as well as technical files like \"llms.txt\" and \"sitemap.xml\" (which aid in search engine crawling and indexing). Key areas for focus are Content Quality, Structured Data, and AI Accessibility, with particular emphasis on addressing the aforementioned issues to enhance our online presence.",
+  "generatedAt": "2026-08-06T08:19:40.929180+00:00"
+}

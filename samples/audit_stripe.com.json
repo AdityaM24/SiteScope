@@ -1,0 +1,181 @@
+{
+  "url": "https://stripe.com",
+  "overallScore": 43,
+  "categoryScores": [
+    {
+      "category": "Content Quality",
+      "score": 11,
+      "max_score": 25,
+      "checks": [
+        "Title Tag",
+        "Meta Description",
+        "Heading Structure",
+        "Content Freshness"
+      ]
+    },
+    {
+      "category": "Structured Data",
+      "score": 13,
+      "max_score": 20,
+      "checks": [
+        "Organization Schema",
+        "FAQ Schema",
+        "Article Schema",
+        "Breadcrumb Schema"
+      ]
+    },
+    {
+      "category": "AI Accessibility",
+      "score": 0,
+      "max_score": 20,
+      "checks": [
+        "robots.txt",
+        "llms.txt",
+        "sitemap.xml"
+      ]
+    },
+    {
+      "category": "Entity Trust",
+      "score": 4,
+      "max_score": 20,
+      "checks": [
+        "Business Info Consistency"
+      ]
+    },
+    {
+      "category": "Citation Readiness",
+      "score": 15,
+      "max_score": 15,
+      "checks": [
+        "faq_schema",
+        "article_schema",
+        "meta_description",
+        "title"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Organization Schema",
+      "page": "stripe.com",
+      "severity": "High",
+      "evidence": "stripe.com: No Organization schema found",
+      "recommendation": "Add Organization JSON-LD schema with name, logo, and contact info to help AI identify your business.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"Stripe\",\n  \"url\": \"https://stripe.com/\",\n  \"logo\": \"https://stripe.com/favicon.ico\",\n  \"sameAs\": [\n    \"https://twitter.com/yourhandle\",\n    \"https://www.linkedin.com/company/yourcompany\"\n  ]\n}\n</script>",
+      "explanation": "This issue matters for AI visibility because it helps search engines like Google understand your business's identity and display accurate information about your company. By adding an Organization schema, you're providing a digital \"business card\" that makes it easier for AI to recognize and showcase your business's name, logo, and contact details. This, in turn, can improve your online presence and make it simpler for customers to find and interact with your business.",
+      "impact": 10,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 3.0
+    },
+    {
+      "id": 2,
+      "title": "llms.txt",
+      "page": "stripe.com",
+      "severity": "High",
+      "evidence": "stripe.com: No /llms.txt file found",
+      "recommendation": "Add a /llms.txt file to guide AI crawlers. Include a site description and links to key pages.",
+      "fixCode": "# Stripe\n\n> A short description of Stripe and what the site offers.\n\n## Key Pages\n\n- [Home](https://stripe.com/)\n- [About](https://stripe.com/about)\n- [Contact](https://stripe.com/contact)\n- [Products](https://stripe.com/products)\n",
+      "explanation": "The absence of an llms.txt file matters for AI visibility because it hinders the ability of artificial intelligence (AI) crawlers, like search engines, to understand and effectively index a website's content. By adding this file, businesses can provide AI crawlers with a roadmap to their site, including a description and key page links, which can improve their online discoverability. This, in turn, can lead to increased website traffic and better search engine rankings, ultimately driving more sales and revenue.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 3,
+      "title": "sitemap.xml",
+      "page": "stripe.com",
+      "severity": "High",
+      "evidence": "stripe.com: No sitemap.xml found",
+      "recommendation": "Create a sitemap.xml to help AI crawlers discover your pages.",
+      "fixCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://stripe.com/</loc>\n    <lastmod>2026-08-06</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n</urlset>\n",
+      "explanation": "The absence of a sitemap.xml file on stripe.com is a significant issue because it hinders AI-powered search engines, like Google, from efficiently discovering and indexing all the website's pages. This matters for AI visibility because a sitemap.xml file acts as a roadmap, guiding AI \"crawlers\" (programs that systematically browse the internet) to all the important pages on a website, ensuring they are included in search results. By creating a sitemap.xml, stripe.com can improve its online visibility, making it easier for users to find their content through search engines.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 4,
+      "title": "Heading Structure",
+      "page": "https://stripe.com/",
+      "severity": "High",
+      "evidence": "https://stripe.com/: H1: 2, H2: 5, H3: 25; https://stripe.com/in/contact/sales: H1: 1, H2: 0, H3: 0; https://stripe.com/in/newsroom/news/stripe-openai-instant-checkout: H1: 19, H2: 0, H3: 0; https://stripe.com/in/pricing: H1: 88, H2: 5, H3: 6; https://dashboard.stripe.com/login: H1: 0, H2: 0, H3: 0; https://dashboard.stripe.com/register: H1: 0, H2: 0, H3: 0; https://stripe.com/in/newsroom/news/nvidia-collaboration-with-stripe: H1: 19, H2: 0, H3: 0; https://stripe.com/in/customers/amazon: H1: 27, H2: 3, H3: 0; https://stripe.com/in/newsroom/news/stripe-ford-agreement: H1: 19, H2: 0, H3: 0; https://stripe.com/in/customers/shopify: H1: 27, H2: 3, H3: 0; https://stripe.com/in/newsroom/news/google-and-stripe: H1: 19, H2: 0, H3: 0; https://stripe.com/in/customers/ramp: H1: 31, H2: 0, H3: 2; https://stripe.com/in/customers/woo: H1: 30, H2: 0, H3: 4; https://stripe.com/in/customers/mindbody: H1: 30, H2: 0, H3: 3; https://stripe.com/in/newsroom/news/stripe-and-uber: H1: 19, H2: 0, H3: 0; https://stripe.com/in/customers/figma: H1: 31, H2: 3, H3: 3; https://stripe.com/in/customers/anthropic: H1: 30, H2: 0, H3: 6; https://stripe.com/in/customers/lightspeed-terminal: H1: 30, H2: 1, H3: 2; https://stripe.com/in/customers/cursor: H1: 29, H2: 3, H3: 4; https://stripe.com/sessions/2026?utm_medium=owned-surfaces&utm_source=9cb9&utm_campaign=GLOBAL_4301&utm_content=8a70&utm_term=5a728d3d167c: H1: 24, H2: 58, H3: 1",
+      "recommendation": "https://stripe.com/: 2 H1 tags (should be 1); https://stripe.com/in/newsroom/news/stripe-openai-instant-checkout: 19 H1 tags (should be 1); https://stripe.com/in/pricing: 88 H1 tags (should be 1). Use exactly one H1 per page and logical H2/H3 hierarchy.",
+      "fixCode": "<h1>Page Title</h1>\n<h2>Main Section Heading</h2>\n<p>Content...</p>\n<h3>Subsection Heading</h3>\n<p>More content...</p>",
+      "explanation": "The issue of heading structure matters for AI visibility because it affects how search engines like Google understand and rank a website's content. Proper use of headings (H1, H2, H3) helps AI algorithms comprehend the page's hierarchy and relevance, improving the website's search engine optimization (SEO). By using exactly one H1 per page and a logical H2/H3 hierarchy, businesses like Stripe can enhance their online visibility and make it easier for customers to find their content.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 5,
+      "title": "robots.txt",
+      "page": "stripe.com",
+      "severity": "High",
+      "evidence": "stripe.com: No robots.txt found",
+      "recommendation": "Add a robots.txt file to guide AI and search crawlers.",
+      "fixCode": "# Allow AI crawlers (so your site can appear in ChatGPT, Perplexity, etc.)\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\n# General rules\nUser-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /login/\n",
+      "explanation": "The issue of missing robots.txt files matters for AI visibility because it affects how search engines and artificial intelligence (AI) systems, like virtual assistants or chatbots, can discover and understand a company's online content. Without a robots.txt file, AI systems may not be able to properly crawl and index a website, potentially limiting its online visibility and reach. By adding a robots.txt file, companies like Stripe can provide guidance to AI and search crawlers, ensuring their online content is properly discovered and showcased to their target audience.",
+      "impact": 10,
+      "confidence": 0.7,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 1.4
+    },
+    {
+      "id": 6,
+      "title": "Breadcrumb Schema",
+      "page": "stripe.com",
+      "severity": "High",
+      "evidence": "stripe.com: No BreadcrumbList schema found",
+      "recommendation": "Add BreadcrumbList JSON-LD to help AI understand site hierarchy.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://stripe.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"Current Page\",\n      \"item\": \"https://stripe.com/current-page\"\n    }\n  ]\n}\n</script>",
+      "explanation": "The Breadcrumb Schema issue matters for AI visibility because it helps search engines like Google understand the organization and structure of a website, making it easier for users to find what they're looking for. Think of it like a map that shows how different pages are connected, allowing AI to better navigate and index the site. By adding BreadcrumbList JSON-LD (a type of code that provides additional context), businesses like Stripe can improve their website's visibility and make it more accessible to users.",
+      "impact": 3,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 3,
+      "priority": 1.0
+    },
+    {
+      "id": 7,
+      "title": "Business Info Consistency",
+      "page": "",
+      "severity": "Medium",
+      "evidence": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "recommendation": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"Stripe\",\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"123 Main Street\",\n    \"addressLocality\": \"City\",\n    \"addressRegion\": \"State\",\n    \"postalCode\": \"12345\",\n    \"addressCountry\": \"US\"\n  },\n  \"telephone\": \"+1-555-123-4567\",\n  \"email\": \"hello@yourdomain.com\"\n}\n</script>",
+      "explanation": "This issue matters for AI visibility because inconsistent business information across a company's online presence can confuse search engines like Google, making it harder for them to understand and display accurate information about the business. Think of it like having multiple business cards with different names and addresses - it's confusing and unprofessional. By using consistent business information, such as name, address, and phone number, across all online platforms, companies can improve their visibility and credibility in search engine results.",
+      "impact": 6,
+      "confidence": 0.8,
+      "effort": "Medium",
+      "estimatedScoreGain": 6,
+      "priority": 0.8
+    },
+    {
+      "id": 8,
+      "title": "Content Freshness",
+      "page": "https://stripe.com/in/newsroom/news/stripe-openai-instant-checkout",
+      "severity": "Medium",
+      "evidence": "https://stripe.com/in/newsroom/news/stripe-openai-instant-checkout: Last updated: 2025-09-29 (311 days ago); https://stripe.com/in/newsroom/news/nvidia-collaboration-with-stripe: Last updated: 2024-10-09 (666 days ago); https://stripe.com/in/newsroom/news/stripe-ford-agreement: Last updated: 2022-01-17 (1662 days ago); https://stripe.com/in/newsroom/news/google-and-stripe: Last updated: 2023-06-22 (1141 days ago); https://stripe.com/in/newsroom/news/stripe-and-uber: Last updated: 2023-05-03 (1191 days ago)",
+      "recommendation": "Most content is stale. 3/5 pages older than 2 years. Update content regularly.",
+      "fixCode": "<meta property=\"article:modified_time\" content=\"2026-08-06T10:00:00+00:00\" />\n<meta property=\"og:updated_time\" content=\"2026-08-06T10:00:00+00:00\" />",
+      "explanation": "The issue of content freshness matters for AI visibility because search engines like Google prioritize recent and relevant information, making it crucial to update content regularly to improve visibility and credibility. Outdated content, like the examples shown, can negatively impact a company's online presence and make it seem less active or innovative. By keeping content fresh, businesses can increase their chances of being seen by customers and stay ahead of the competition in search engine results.",
+      "impact": 4,
+      "confidence": 0.8,
+      "effort": "High",
+      "estimatedScoreGain": 4,
+      "priority": 0.53
+    }
+  ],
+  "executiveSummary": "Our GEO audit yielded a score of 43/100, indicating significant room for improvement. The top issues include missing or incomplete technical files such as Organization Schema, llms.txt, and sitemap.xml, which help search engines understand our site's structure, as well as poor Heading Structure and incomplete robots.txt, which guides search engine crawlers. Key areas for improvement are AI Accessibility, which refers to how well our site is optimized for artificial intelligence-powered tools, and Entity Trust, which measures how trustworthy our site appears to search engines.",
+  "generatedAt": "2026-08-06T08:19:21.554184+00:00"
+}

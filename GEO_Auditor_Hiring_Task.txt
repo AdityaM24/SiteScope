@@ -1,0 +1,265 @@
+Product Developer — Take-Home
+Task
+Role: Product Developer (AI Products)
+
+Company: Phaze AI
+
+Time limit: 48 hours from the moment you receive this
+
+Effort expected: 8–12 focused hours. Do not burn the full 48.
+
+Why this task exists
+
+We build AI products for businesses. The job is not "write code to spec" — it's take a fuzzy business
+problem, decide what the product should be, and ship something a real customer could use.
+
+This task is deliberately under-specified. Part of what we're grading is the decisions you make when
+nobody tells you what to do.
+
+You are expected to use AI tools (Claude Code, Cursor, whatever you use). That's the job. We're not
+testing whether you can write a for-loop from memory.
+
+The problem
+
+Search is moving from Google to AI. People now ask ChatGPT, Perplexity, Claude, and Google AI
+Overviews instead of typing keywords into a search bar.
+
+That breaks the entire SEO industry's playbook. A business can rank #1 on Google and be completely
+invisible inside AI answers, because AI engines choose their sources by a different set of rules — and
+most businesses have no idea what those rules are.
+
+This new discipline is called GEO — Generative Engine Optimization (also called AEO / LLMO / AI
+SEO).
+
+Right now, almost no business knows whether they're visible in AI search. There is no easy way to
+check. That's the gap.
+
+What to build
+
+A GEO Auditor.
+
+A user enters a business — at minimum a website URL — and gets back an audit report that tells them:
+
+1
+ How visible they currently are in AI search (a score, and the evidence behind it)
+
+2
+ What is broken (specific, with proof — not generic advice)
+
+3
+ What to fix, in what order (prioritized by impact vs effort)
+Phaze AI  ·  Product Developer Take-Home
+ Page 2
+
+That's it. How you build it, what stack, what the report looks like — your call.
+
+What to actually check — you decide
+
+We are not giving you a checklist. Figuring out what to measure is the task.
+
+Nobody has agreed on what a GEO audit should contain yet. The field is about two years old. So go
+research it: read what's being written about AI search visibility, look at what the early tools in this space
+do, poke at a few AI engines yourself and notice what makes them cite one source over another. Then
+decide what belongs in your auditor.
+
+Two rules:
+
+•
+ Go deep, not wide. Three checks done properly beat twelve that tick boxes. A narrow tool that works
+beats a wide tool that half-works.
+
+•
+ Be able to defend every check. In your README, tell us why each one is in there and why the ones
+you skipped aren't. "It was easy to build" is an acceptable reason if you say so honestly.
+
+If two candidates submit tools that check completely different things, that's expected. We're reading your
+reasoning as much as your code.
+
+The report is the product
+
+Read this section twice. The report is what we're actually evaluating. A beautiful scraper with an ugly
+report scores badly.
+
+Requirements:
+
+•
+ A score with a visible breakdown. If you show a number, we must be able to see how it was
+calculated. No magic 73/100.
+
+•
+ Every finding must carry evidence. A vague "your site isn't optimized" is worthless. Name the exact
+page, show what you found, and show what it should be instead.
+
+•
+ Prioritized fixes, ordered by impact x effort. The business owner should know what to do Monday
+morning.
+
+•
+ Written for a business owner, not an SEO consultant. If a fix needs jargon, explain the jargon
+inline.
+
+•
+ Copy-pasteable output wherever the fix allows it. Don't describe the fix — hand it to them.
+
+Format is your choice: web page, PDF, dashboard, whatever you can defend.
+
+What we are NOT asking for
+
+•
+ Auth, signup, billing, user accounts — skip entirely
+
+•
+ A database, unless you actually need one
+Phaze AI  ·  Product Developer Take-Home
+ Page 3
+
+•
+ Deployment to production (a working local run + a demo video is fine, though a live link is a nice
+touch)
+
+•
+ Tests, CI, Docker — not graded
+
+•
+ Mobile responsiveness — not graded
+
+•
+ Handling every website on the internet. Make it work well for 3–5 real businesses.
+
+Constraints
+
+•
+ Build it however you want. Any language, any framework, any model, any API, any tooling. Zero
+restrictions.
+
+•
+ Use AI tools freely. Claude Code, Cursor, Copilot — expected, not penalized.
+
+•
+ Existing libraries are fine. Do not hand-roll an HTML parser.
+
+•
+ If you mock something, label it in the code and in your README. A clearly-labelled mock costs you
+nothing. A fake result presented as real is an instant no.
+
+•
+ Questions are welcome — ask any time, it's a positive signal. But don't wait on an answer to start.
+Make an assumption, write it in the README, and move.
+
+Deliverables
+
+Submit all four:
+
+1
+ Code — public GitHub repo (or a private one, and we'll send you the account to invite)
+
+2
+ README covering:
+
+•
+ How to run it (we should get it running in under 5 minutes)
+
+•
+ What you chose to build and, more importantly, what you chose to cut and why
+
+•
+ What's real vs mocked
+
+•
+ What you'd build next with another week
+
+1
+ Three real audit reports — run your tool against three actual businesses of your choosing and
+include the outputs. Not screenshots of a template. Real runs.
+
+2
+ A 3–5 minute Loom/screen recording — you, walking through the tool and one report. No editing
+needed. Talk about your decisions, not just your features.
+
+How to submit: reply on the same thread you received this task on.
+
+Subject line: GEO Auditor — [Your Name]
+
+If you can't finish everything, ship what works and be honest about what doesn't. A working 40% with a
+clear README beats a broken 90%.
+
+How we score it
+Phaze AI  ·  Product Developer Take-Home
+ Page 4
+
+Area
+ Weight
+ What earns points
+
+Research & what you
+chose to check
+
+30%
+ You went into an unfamiliar field, figured out what actually drives AI
+visibility, and built checks that measure it. This is the biggest single
+factor. Picking obvious surface-level checks scores low even if they're
+implemented perfectly.
+
+Report quality
+ 25%
+ Would a business owner pay for this output? Is it specific, evidenced,
+prioritized, and readable?
+
+Product judgment
+ 20%
+ Did you cut the right things? Does this feel like it was built by someone
+who thought about the customer, not just the ticket?
+
+Technical execution
+ 15%
+ Does it run? Does it handle a messy real-world site without crashing? Is
+the code something a second person could extend?
+
+Communication
+ 10%
+ README and video. Can you explain a decision and defend a tradeoff?
+
+What gets you an instant no
+
+•
+ Tool only works on the one URL you demoed
+
+•
+ Report is generic advice that would be identical for any website
+
+•
+ Findings with no evidence attached
+
+•
+ Mocked results presented as live data
+
+•
+ Checks you can't explain the reasoning behind
+E:\codes\Phaze_Assignment\GEO_Auditor_Hiring_Task.txt
+•
+ No submission by the deadline with no heads-up
+
+What gets you hired on the spot
+
+•
+ We run it on a business you've never seen and it produces something genuinely useful
+
+•
+ You measure something we hadn't thought of, and after seeing it we can't imagine the report without
+it
+
+•
+ You cut scope aggressively and can explain exactly why
+
+•
+ Your README changes how we think about this problem
+
+One last thing
+
+The businesses that need this have no idea anything is wrong. They think they're fine because they rank
+on Google.
+
+The whole value of this product is the moment the owner sees the report and realises they have a
+problem — and then finds the fix sitting right underneath it.
+
+Build for that moment.

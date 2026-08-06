@@ -1,0 +1,181 @@
+{
+  "url": "https://www.notion.so",
+  "overallScore": 32,
+  "categoryScores": [
+    {
+      "category": "Content Quality",
+      "score": 11,
+      "max_score": 25,
+      "checks": [
+        "Title Tag",
+        "Meta Description",
+        "Heading Structure",
+        "Content Freshness"
+      ]
+    },
+    {
+      "category": "Structured Data",
+      "score": 8,
+      "max_score": 20,
+      "checks": [
+        "Organization Schema",
+        "FAQ Schema",
+        "Article Schema",
+        "Breadcrumb Schema"
+      ]
+    },
+    {
+      "category": "AI Accessibility",
+      "score": 0,
+      "max_score": 20,
+      "checks": [
+        "robots.txt",
+        "llms.txt",
+        "sitemap.xml"
+      ]
+    },
+    {
+      "category": "Entity Trust",
+      "score": 4,
+      "max_score": 20,
+      "checks": [
+        "Business Info Consistency"
+      ]
+    },
+    {
+      "category": "Citation Readiness",
+      "score": 9,
+      "max_score": 15,
+      "checks": [
+        "faq_schema",
+        "article_schema",
+        "meta_description",
+        "title"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Organization Schema",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: No Organization schema found",
+      "recommendation": "Add Organization JSON-LD schema with name, logo, and contact info to help AI identify your business.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"The AI workspace that works for you.\",\n  \"url\": \"https://www.notion.so/\",\n  \"logo\": \"https://www.notion.so/favicon.ico\",\n  \"sameAs\": [\n    \"https://twitter.com/yourhandle\",\n    \"https://www.linkedin.com/company/yourcompany\"\n  ]\n}\n</script>",
+      "explanation": "The Organization Schema issue matters for AI visibility because it helps search engines and other artificial intelligence (AI) systems understand your business's identity and contact information. By adding this schema, you're providing a clear and standardized way for AI to recognize your company, similar to how a business card provides key details about a person. This improves your online presence and makes it easier for customers to find and interact with your business.",
+      "impact": 10,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 3.0
+    },
+    {
+      "id": 2,
+      "title": "FAQ Schema",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: FAQ content detected but no FAQPage schema. Questions: do?, do?, beautiful?",
+      "recommendation": "FAQ content detected but no FAQPage JSON-LD schema. Add FAQPage schema for better AI visibility.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Ready to build something beautiful?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Paste the answer here.\"\n      }\n    }\n  ]\n}\n</script>",
+      "explanation": "The FAQ schema issue matters for AI visibility because it helps search engines like Google understand the content and structure of a website's frequently asked questions (FAQ) section. By adding an FAQPage schema, a type of code that provides additional context, businesses can improve their website's visibility in search results and make it easier for users to find answers to common questions. This, in turn, can drive more traffic and engagement to the website, ultimately boosting its online presence and credibility.",
+      "impact": 8,
+      "confidence": 0.85,
+      "effort": "Low",
+      "estimatedScoreGain": 8,
+      "priority": 2.55
+    },
+    {
+      "id": 3,
+      "title": "llms.txt",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: No /llms.txt file found",
+      "recommendation": "Add a /llms.txt file to guide AI crawlers. Include a site description and links to key pages.",
+      "fixCode": "# The AI workspace that works for you.\n\n> A short description of The AI workspace that works for you. and what the site offers.\n\n## Key Pages\n\n- [Home](https://www.notion.so/)\n- [About](https://www.notion.so/about)\n- [Contact](https://www.notion.so/contact)\n- [Products](https://www.notion.so/products)\n",
+      "explanation": "This issue matters for AI visibility because it affects how artificial intelligence (AI) systems, like search engines, understand and navigate your website. By adding a /llms.txt file, you're providing a roadmap that helps AI \"crawlers\" (think of them like digital librarians) discover and index your site's key pages, making it more visible to users. Essentially, this file is a simple way to communicate with AI systems and ensure your website is properly represented in search results and other online platforms.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 4,
+      "title": "sitemap.xml",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: No sitemap.xml found",
+      "recommendation": "Create a sitemap.xml to help AI crawlers discover your pages.",
+      "fixCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://www.notion.so/</loc>\n    <lastmod>2026-08-06</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n</urlset>\n",
+      "explanation": "The absence of a sitemap.xml file matters for AI visibility because it makes it harder for search engines like Google to find and index all the pages on your website, which can negatively impact your online presence. Think of a sitemap.xml file like a map that helps AI \"crawlers\" (computer programs that browse the internet) discover and navigate your website's content. By creating a sitemap.xml file, you can improve the chances of your website's pages being found and displayed in search engine results, making it more visible to potential customers.",
+      "impact": 5,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 2.0
+    },
+    {
+      "id": 5,
+      "title": "Heading Structure",
+      "page": "https://www.notion.so/",
+      "severity": "Medium",
+      "evidence": "https://www.notion.so/: H1: 1, H2: 11, H3: 6; https://www.notion.so/product/ai: H1: 1, H2: 9, H3: 18; https://www.notion.so/product/enterprise-search: H1: 1, H2: 11, H3: 13; https://www.notion.so/product/agents: H1: 1, H2: 10, H3: 12; https://www.notion.so/product: H1: 1, H2: 11, H3: 6; https://www.notion.so/product/wikis: H1: 2, H2: 8, H3: 28; https://www.notion.so/connections: H1: 1, H2: 0, H3: 0; https://www.notion.so/security: H1: 1, H2: 6, H3: 19; https://www.notion.so/product/docs: H1: 2, H2: 7, H3: 20; https://www.notion.so/product/projects: H1: 2, H2: 8, H3: 33; https://www.notion.so/releases: H1: 1, H2: 10, H3: 19; https://www.notion.so/product/calendar: H1: 1, H2: 23, H3: 2; https://www.notion.so/download: H1: 1, H2: 3, H3: 0; https://www.notion.so/product/ai/use-cases?type=life: H1: 1, H2: 1, H3: 0; https://www.notion.so/product/ai/use-cases?type=work: H1: 1, H2: 1, H3: 0; https://www.notion.so/templates/category/marketing: H1: 1, H2: 12, H3: 6; https://www.notion.so/product/notion-for-product-development: H1: 2, H2: 8, H3: 13; https://www.notion.so/product/notion-for-design: H1: 1, H2: 8, H3: 3; https://www.notion.so/templates/category/ticketing: H1: 1, H2: 10, H3: 5",
+      "recommendation": "https://www.notion.so/product/wikis: 2 H1 tags (should be 1); https://www.notion.so/product/docs: 2 H1 tags (should be 1); https://www.notion.so/product/projects: 2 H1 tags (should be 1). Use exactly one H1 per page and logical H2/H3 hierarchy.",
+      "fixCode": "<h1>Page Title</h1>\n<h2>Main Section Heading</h2>\n<p>Content...</p>\n<h3>Subsection Heading</h3>\n<p>More content...</p>",
+      "explanation": "The issue of heading structure matters for AI visibility because it affects how search engines like Google understand and rank website content. A clear and logical heading hierarchy, with one main heading (H1) per page and organized subheadings (H2 and H3), helps AI algorithms comprehend the page's structure and content, improving the website's search engine optimization (SEO). By fixing heading structure issues, such as having only one H1 tag per page, businesses can enhance their online visibility and make it easier for customers to find their content.",
+      "impact": 4,
+      "confidence": 1.0,
+      "effort": "Low",
+      "estimatedScoreGain": 4,
+      "priority": 2.0
+    },
+    {
+      "id": 6,
+      "title": "Content Freshness",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: No dates found on 19 pages",
+      "recommendation": "Add 'last modified' dates to pages. AI assistants prefer fresh content.",
+      "fixCode": "<meta property=\"article:modified_time\" content=\"2026-08-06T10:00:00+00:00\" />\n<meta property=\"og:updated_time\" content=\"2026-08-06T10:00:00+00:00\" />",
+      "explanation": "The issue of content freshness matters for AI visibility because search engines and AI assistants, like virtual helpers, prioritize showing users the most up-to-date and relevant information. By not having 'last modified' dates on pages, a website may appear outdated to AI systems, potentially lowering its visibility in search results. Adding these dates helps signal to AI assistants that the content is regularly updated, increasing the likelihood of it being displayed to users.",
+      "impact": 5,
+      "confidence": 0.9,
+      "effort": "Low",
+      "estimatedScoreGain": 5,
+      "priority": 1.8
+    },
+    {
+      "id": 7,
+      "title": "robots.txt",
+      "page": "www.notion.so",
+      "severity": "High",
+      "evidence": "www.notion.so: No robots.txt found",
+      "recommendation": "Add a robots.txt file to guide AI and search crawlers.",
+      "fixCode": "# Allow AI crawlers (so your site can appear in ChatGPT, Perplexity, etc.)\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\n# General rules\nUser-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /login/\n",
+      "explanation": "The absence of a robots.txt file matters for AI visibility because it can hinder search engines and AI tools from properly understanding and indexing a website's content. Think of robots.txt as a set of instructions that tells these \"crawlers\" which parts of the site to explore and which to ignore, helping to ensure that the most relevant and accurate information is made visible to users. By adding a robots.txt file, a website can better control how its content is discovered and presented by AI-powered search tools, ultimately improving its online visibility and reach.",
+      "impact": 10,
+      "confidence": 0.7,
+      "effort": "Low",
+      "estimatedScoreGain": 10,
+      "priority": 1.4
+    },
+    {
+      "id": 8,
+      "title": "Business Info Consistency",
+      "page": "",
+      "severity": "Medium",
+      "evidence": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "recommendation": "Entity consistency issues: No organization name found in schema; No business contact info found in schema. Use consistent Name/Address/Phone across all pages and schema.",
+      "fixCode": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"The AI workspace that works for you.\",\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"123 Main Street\",\n    \"addressLocality\": \"City\",\n    \"addressRegion\": \"State\",\n    \"postalCode\": \"12345\",\n    \"addressCountry\": \"US\"\n  },\n  \"telephone\": \"+1-555-123-4567\",\n  \"email\": \"hello@yourdomain.com\"\n}\n</script>",
+      "explanation": "This issue matters for AI visibility because inconsistent business information across online platforms can confuse search engines like Google, making it harder for them to understand and display accurate information about your business. Think of it like having multiple, conflicting business cards - it's hard for anyone, including AI systems, to know which one is correct. By using consistent business name, address, and phone number across all pages and online directories, you can improve your business's online visibility and make it easier for customers to find you.",
+      "impact": 6,
+      "confidence": 0.8,
+      "effort": "Medium",
+      "estimatedScoreGain": 6,
+      "priority": 0.8
+    }
+  ],
+  "executiveSummary": "Our GEO audit yielded a score of 32/100, indicating significant room for improvement. The top issues include missing or incomplete \"schemas\" (think of them as digital business cards) such as Organization and FAQ Schema, as well as technical files like llms.txt and sitemap.xml, which help search engines understand our site. To boost our score, we should prioritize fixing these issues, particularly the schema and technical file errors, to enhance our online visibility and accessibility.",
+  "generatedAt": "2026-08-06T08:20:03.837399+00:00"
+}
