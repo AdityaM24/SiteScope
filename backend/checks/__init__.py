@@ -14,6 +14,7 @@ from .breadcrumb_schema import BreadcrumbSchemaCheck
 from .headings import HeadingsCheck
 from .nap_consistency import NAPConsistencyCheck
 from .freshness import FreshnessCheck
+from .answer_block import AnswerBlockCheck
 
 ALL_CHECKS = [
     RobotsTxtCheck(),
@@ -28,4 +29,5 @@ ALL_CHECKS = [
     HeadingsCheck(),
     NAPConsistencyCheck(),
     FreshnessCheck(),
+    AnswerBlockCheck(),
 ]

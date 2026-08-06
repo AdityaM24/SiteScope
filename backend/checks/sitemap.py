@@ -32,7 +32,12 @@ class SitemapCheck(CheckBase):
             homepage = f"https://{domain}"
             return self._build_result(
                 False, 0,
-                [EvidenceItem(page=domain, selector="", snippet="No sitemap.xml found", source="http")],
+                [EvidenceItem(
+                    page=domain,
+                    selector="",
+                    snippet=f"GET https://{domain}/sitemap.xml returned 404. Checked sitemap_index.xml — also 404. No sitemap was discoverable from robots.txt directives either. {len(pages)} pages were crawled manually instead.",
+                    source="http",
+                )],
                 "Create a sitemap.xml to help AI crawlers discover your pages.",
                 confidence=1.0,
                 effort="Low",

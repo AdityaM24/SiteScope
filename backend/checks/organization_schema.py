@@ -65,11 +65,27 @@ class OrganizationSchemaCheck(CheckBase):
                 impact="High",
             )
         else:
+            # Gather what schema types were actually found (for specific evidence)
+            found_types = set()
+            for item in (i for p in pages for i in p.json_ld):
+                for t in item.types:
+                    found_types.add(t)
+            schema_detail = (
+                f". Found {len(pages)} page(s) with schema: {', '.join(sorted(found_types))}."
+                if found_types
+                else f". Checked {len(pages)} page(s) — no schema of any type found."
+            )
             homepage = f"https://{pages[0].domain}"
             name = derive_site_name(pages)
             return self._build_result(
                 False, 0,
-                [EvidenceItem(page=pages[0].domain, selector="", snippet="No Organization schema found", source="schema")],
+                [EvidenceItem(
+                    page=pages[0].domain,
+                    selector="",
+                    snippet=f"No Organization schema on any of {len(pages)} crawled pages"
+                    + schema_detail,
+                    source="schema",
+                )],
                 "Add Organization JSON-LD schema with name, logo, and contact info to help AI identify your business.",
                 confidence=1.0,
                 effort="Low",

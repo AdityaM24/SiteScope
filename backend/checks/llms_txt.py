@@ -32,7 +32,12 @@ class LLMsTxtCheck(CheckBase):
             homepage = f"https://{domain}"
             return self._build_result(
                 False, 0,
-                [EvidenceItem(page=domain, selector="", snippet="No /llms.txt file found", source="http")],
+                [EvidenceItem(
+                    page=domain,
+                    selector="",
+                    snippet=f"GET https://{domain}/llms.txt returned 404 (file does not exist). Checked {len(pages)} crawled pages — none reference an llms.txt.",
+                    source="http",
+                )],
                 "Add a /llms.txt file to guide AI crawlers. Include a site description and links to key pages.",
                 confidence=1.0,
                 effort="Low",

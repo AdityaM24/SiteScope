@@ -22,7 +22,7 @@ from ..models import CheckResult, CategoryScore, Issue, PriorityItem
 CATEGORY_CONFIG: dict[str, dict] = {
     "Content Quality": {
         "max": 25,
-        "checks": ["title", "meta_description", "headings", "freshness"],
+        "checks": ["title", "meta_description", "headings", "freshness", "answer_block"],
     },
     "Structured Data": {
         "max": 20,

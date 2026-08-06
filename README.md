@@ -51,6 +51,7 @@ When you enter a website URL, the GEO Auditor:
 | Meta Description | `<meta name="description">` | Context for AI summaries |
 | Heading Structure | One H1, logical H2/H3 | Helps AI extract answer sections |
 | Content Freshness | Visible last-modified dates | AI prefers recent content |
+| **Answer-Block Detectability** *(new)* | First 100-200 words contain a quotable answer | AI engines cite the first answer-like passage; if buried, the page is skipped |
 
 ### Structured Data (20 pts)
 | Check | What it checks | Why it matters |

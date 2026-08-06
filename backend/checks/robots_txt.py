@@ -40,7 +40,12 @@ class RobotsTxtCheck(CheckBase):
             # robots.txt not available — default allow, but score 0 (missing file)
             return self._build_result(
                 False, 0,
-                [EvidenceItem(page=domain, selector="", snippet="No robots.txt found", source="http")],
+                [EvidenceItem(
+                    page=domain,
+                    selector="",
+                    snippet=f"GET https://{domain}/robots.txt returned 404. No robots.txt exists. AI crawlers (GPTBot, ClaudeBot, PerplexityBot) will use site defaults — you have no control over which pages they access.",
+                    source="http",
+                )],
                 "Add a robots.txt file to guide AI and search crawlers.",
                 confidence=0.7,
                 effort="Low",
