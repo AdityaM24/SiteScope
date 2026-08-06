@@ -179,6 +179,7 @@ class AuditReport(BaseModel):
     issues: list[Issue]
     priority: list[PriorityItem]
     generatedAt: str
+    scopeNote: str = ""  # Shown when content-strength dampening was applied
 
 
 # ---------------------------------------------------------------------------

@@ -258,6 +258,22 @@ The assignment says *"go deep, not wide"* and *"defend every check in the README
 
 ---
 
+## Scope & Limitations
+
+**This tool is designed for SMB and brand websites trying to improve their visibility in AI search.**
+
+The score measures **GEO optimization readiness** — how well your site's technical signals (structured data, crawlability, metadata, content structure) are set up for AI discovery. It is **not** a measure of actual AI citation likelihood.
+
+A well-known source like Wikipedia may score 30/100 because it doesn't use schema.org markup, FAQ tags, or llms.txt — but it's still the most cited source in AI answers. Why? Because it has something our checks can't measure: **authority, reputation, and being the default source AI models train on.**
+
+**When the score is low but the site is clearly well-known**, the report includes a scope note explaining this. The tool's value is for the businesses that rank on Google but are invisible in AI answers — the ones who think they're fine because they're page 1 on Google, but ChatGPT has never heard of them.
+
+### Content-strength dampening
+
+When a site shows strong content quality signals (good headings, fresh content, structured metadata), Structured Data and AI Accessibility deductions are automatically reduced. The rationale: an established site with good content but missing schema.org is less invisible than a small site missing everything — AI already finds it through other means.
+
+---
+
 ## What I'd Build Next
 
 1. **LLM-powered recommendations** — Real OpenAI/Gemini explanations instead of templates

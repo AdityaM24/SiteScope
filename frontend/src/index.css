@@ -195,6 +195,17 @@ body {
 }
 
 /* Summary */
+.scope-note {
+  background: #1e293b;
+  border-left: 3px solid #f59e0b;
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #fde68a;
+  line-height: 1.5;
+}
+
 .summary {
   background: var(--surface);
   border-radius: 12px;

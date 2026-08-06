@@ -73,6 +73,7 @@ def render_html(report: AuditReport) -> str:
   header .score-label {{ font-size: 0.9rem; opacity: 0.8; }}
   .section {{ background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }}
   .section h2 {{ font-size: 1.2rem; margin-bottom: 1rem; color: #1e3a5f; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }}
+  .scope-note {{ background: #fefce8; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem; font-size: 0.88rem; color: #92400e; line-height: 1.5; }}
   .summary {{ background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 0 8px 8px 0; }}
   table {{ width: 100%; border-collapse: collapse; }}
   th, td {{ padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }}
@@ -107,6 +108,7 @@ def render_html(report: AuditReport) -> str:
 
   <div class="section">
     <h2>Executive Summary</h2>
+    {f'<div class="scope-note">ℹ️ {_html_escape(report.scopeNote)}</div>' if report.scopeNote else ''}
     <div class="summary">{report.executiveSummary}</div>
   </div>
 

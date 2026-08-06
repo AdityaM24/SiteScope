@@ -1,5 +1,18 @@
 """
 Scoring engine — deterministic aggregation of check results.
+
+Content-strength dampening:
+    Structured Data and AI Accessibility deductions are reduced when the site
+    already has strong content signals (title, headings, freshness, meta,
+    FAQ/article schema).  The rationale: an established site that has good
+    content but is missing schema.org markup is less invisible to AI than a
+    small site missing everything — AI already finds it through other means.
+
+    Formula (documented, deterministic):
+        content_signal_ratio = (content_quality + citation_readiness) / 40
+        factor = clamp((content_signal_ratio - 0.3) / 0.5, 0, 1)
+        sd_reduction  = factor × 0.45   (max 45 %)
+        ai_reduction  = factor × 0.35   (max 35 %)
 """
 from __future__ import annotations
 
@@ -28,6 +41,68 @@ CATEGORY_CONFIG: dict[str, dict] = {
         "checks": [],  # Composite — derived from FAQ + Article schema presence
     },
 }
+
+
+def _compute_content_signal_ratio(
+    content_quality: int,
+    citation_readiness: int,
+    content_max: int = 25,
+    citation_max: int = 15,
+) -> float:
+    """
+    Ratio measuring how strong the site's raw content signals are,
+    independent of schema.org or crawlability.  Used to dampen
+    Structured Data / AI Accessibility penalties when content is strong.
+    """
+    return min(1.0, (content_quality + citation_readiness) / (content_max + citation_max))
+
+
+def _apply_content_dampening(
+    category_scores: list[CategoryScore],
+) -> tuple[list[CategoryScore], float, float]:
+    """
+    If content signals are strong, reduce SD / AI deductions proportionally.
+    Returns the adjusted scores and the two reduction fractions (for the
+    scope note).
+    """
+    # Find content-quality and citation-readiness scores
+    cq = next((cs.score for cs in category_scores if cs.category == "Content Quality"), 0)
+    cr = next((cs.score for cs in category_scores if cs.category == "Citation Readiness"), 0)
+
+    ratio = _compute_content_signal_ratio(cq, cr)
+    # Factor: 0 below 0.3, scales linearly to 1.0 at 0.8+
+    factor = max(0.0, min(1.0, (ratio - 0.3) / 0.5))
+
+    sd_reduction = factor * 0.45   # max 45 % fewer SD deductions
+    ai_reduction = factor * 0.35   # max 35 % fewer AI deductions
+
+    if sd_reduction == 0 and ai_reduction == 0:
+        return category_scores, 0.0, 0.0
+
+    adjusted: list[CategoryScore] = []
+    for cs in category_scores:
+        if cs.category == "Structured Data" and sd_reduction > 0:
+            deduction = cs.max_score - cs.score
+            new_deduction = round(deduction * (1.0 - sd_reduction))
+            adjusted.append(CategoryScore(
+                category=cs.category,
+                score=cs.max_score - new_deduction,
+                max_score=cs.max_score,
+                checks=cs.checks,
+            ))
+        elif cs.category == "AI Accessibility" and ai_reduction > 0:
+            deduction = cs.max_score - cs.score
+            new_deduction = round(deduction * (1.0 - ai_reduction))
+            adjusted.append(CategoryScore(
+                category=cs.category,
+                score=cs.max_score - new_deduction,
+                max_score=cs.max_score,
+                checks=cs.checks,
+            ))
+        else:
+            adjusted.append(cs)
+
+    return adjusted, sd_reduction, ai_reduction
 
 
 def compute_scores(check_results: list[CheckResult]) -> list[CategoryScore]:
@@ -100,6 +175,17 @@ def compute_scores(check_results: list[CheckResult]) -> list[CategoryScore]:
         ))
 
     return category_scores
+
+
+def compute_scores_dampened(
+    check_results: list[CheckResult],
+) -> tuple[list[CategoryScore], float, float]:
+    """
+    Compute category scores and apply content-strength dampening.
+    Returns (category_scores, sd_reduction_pct, ai_reduction_pct).
+    """
+    category_scores = compute_scores(check_results)
+    return _apply_content_dampening(category_scores)
 
 
 def compute_overall(category_scores: list[CategoryScore]) -> int:
